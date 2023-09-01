@@ -1,65 +1,92 @@
-#include <algorithm>
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
+
 using namespace std;
 
-int main()
-{
-    cout << "Hello! Welcome to my information session." << endl;
-    getchar();
-       
-    cout << "This won't be long, so don't worry. :D" << endl;
-    getchar();
+void displaySphere() {
+    cout << R"(
+         .-""""""-.
+       .'          '.
+      /   O      O   \
+     :                :
+     |                |   
+     : ',          ,' :
+      \  '-......-'  /
+       '.          .'
+         '-......-'   
+)" << endl;
+}
 
-    cout << "Sit back, relax, and choose what interests you!" << endl;
-    getchar();
+void displayMenu() {
+    cout << "1. View Name" << endl;
+    cout << "2. View Major" << endl;
+    cout << "3. View Hobbies" << endl;
+    cout << "4. Random Fun Fact" << endl;
+    cout << "5. Exit" << endl;
+    cout << "Enter your choice: ";
+}
 
+void displayRandomFunFact() {
+    // Define an array of fun facts
+    string funFacts[] = {
+        "I am a PEP Leader for CS Students this year!",
+        "I'm pursuing a Masters after my Bachelors.",
+        "I am currently making my own RPG game.",
+        "I am a Sophomore at UT at Martin.",
+        "I watch A LOT of anime, and have grown up on it. It's kind of an issue.",
+        "If you don't see me around, check the CS Lab.",
+        "There are different ones of these you can see each time!!",
+        "I am from Adamsville, TN.",
+        "I will be adding more to this Github soon!",
+        "My Spotify is linked in my Github! It's peak.",
+        "Does anybody miss Twitter being Twitter??",
+        "I drink an unhealthy amount of VitaminWater."
+    };
+
+    // Generate a random index to select a fun fact
+    int numFacts = sizeof(funFacts) / sizeof(funFacts[0]);
+    int randomIndex = rand() % numFacts;
+
+    cout << "Fun Fact: " << funFacts[randomIndex] << endl;
+}
+
+int main() {
+    string name = "Connor (CJ) Gladish";
+    string major = "Computer Science w/ a Minor in Cybersecurity";
+    string hobbies = "Gaming, Software Development, Piano, Guitar, Reading Manga";
+
+    srand(static_cast<unsigned>(time(nullptr))); // Seed for random number generation
+
+    displaySphere();
+    
     int choice;
-    while (true) {
-        cout << "Select what you would like to know!" << endl;
 
-        cout << "1.) Age" << endl;
-        cout << "2.) University of Attendance" << endl;
-        cout << "3.) Major & Minor" << endl;
-        cout << "4.) GPA" << endl;
-        cout << "5.) Ideas" << endl;
-        cout << "6.) Regarding GitHub" << endl;
-        cout << "7.) Closing thoughts" << endl;
-        cout << "8.) Enter your choice! (0 to exit)" << endl;
-       
+    do {
+        displayMenu();
         cin >> choice;
 
         switch (choice) {
-
-        case 0:
-            return false;
-        case 1:
-            cout << "As of February of 2023, I am 19 years old." << endl;
-            break;
-        case 2:
-            cout << "I attend the University of TN - Martin. Go SkyHawks!" << endl;
-            break;
-        case 3:
-            cout << "I am a Computer Science Major with a Minor in Cybersecurity! Go figure, right?" << endl;
-            break;
-        case 4:
-            cout << "Well someone's curious. I'm passing, mom. Sheesh." << endl;
-            break;
-        case 5:
-            cout << "I currently want to make a simple text game using these features." << endl;
-            break;
-        case 6: 
-            cout << "Most things are private, that will change soon!" << endl;
-            break;
-        case 7:
-            cout << "Thank you so much for sticking around! See ya!" << endl;
-            return 0;
-            break;
-        default:
-            cout << "Invalid selection, please press 1-7." << endl;
-
-
+            case 1:
+                cout << "Name: " << name << endl;
+                break;
+            case 2:
+                cout << "Major: " << major << endl;
+                break;
+            case 3:
+                cout << "Hobbies: " << hobbies << endl;
+                break;
+            case 4:
+                displayRandomFunFact();
+                break;
+            case 5:
+                cout << "Goodbye!" << endl;
+                break;
+            default:
+                cout << "Invalid choice. Please try again." << endl;
         }
+    } while (choice != 5);
 
-    }
     return 0;
 }
+
