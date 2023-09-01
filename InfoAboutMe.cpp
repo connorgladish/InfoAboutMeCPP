@@ -55,7 +55,7 @@ int main()
             return 0;
             break;
         default:
-            cout << "Invalid selection, please press 1-4." << endl;
+            cout << "Invalid selection, please press 1-7." << endl;
 
 
         }
